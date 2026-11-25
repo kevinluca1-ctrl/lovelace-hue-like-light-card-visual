@@ -176,4 +176,27 @@ describe('Light features', () => {
         expect(features.isEmpty()).toBe(false);
         expect(features.isOnlyBrightness()).toBe(false);
     });
+
+    it('should keep a realistic color temp range', () => {
+        const features = new LightFeatures(createLightEntity('on', {
+            min_color_temp_kelvin: 2202,
+            max_color_temp_kelvin: 6535,
+            supported_color_modes: ['color_temp']
+        }));
+
+        expect(features.colorTempMinKelvin).toBe(2202);
+        expect(features.colorTempMaxKelvin).toBe(6535);
+    });
+
+    it('should ignore broken color temp limits', () => {
+        const features = new LightFeatures(createLightEntity('on', {
+            min_color_temp_kelvin: 15,
+            max_color_temp_kelvin: 1000000,
+            supported_color_modes: ['color_temp', 'hs', 'xy']
+        }));
+
+        expect(features.colorTemp).toBe(true);
+        expect(features.colorTempMinKelvin).toBeNull();
+        expect(features.colorTempMaxKelvin).toBeNull();
+    });
 });

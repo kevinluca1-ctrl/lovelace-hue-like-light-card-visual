@@ -1,6 +1,7 @@
 import { Func } from '../types/functions';
 import { ILightFeatures } from '../types/types-interface';
 import { HassLightColorMode, HassLightEntity } from '../types/types-hass';
+import { Consts } from '../types/consts';
 
 export class LightFeatures implements ILightFeatures {
     public constructor(lightEntity: HassLightEntity) {
@@ -43,9 +44,20 @@ export class LightFeatures implements ILightFeatures {
         }
 
         if (this.colorTemp) {
-            this.colorTempMinKelvin = lightEntity.attributes.min_color_temp_kelvin || null;
-            this.colorTempMaxKelvin = lightEntity.attributes.max_color_temp_kelvin || null;
+            this.colorTempMinKelvin = LightFeatures.getValidKelvin(lightEntity.attributes.min_color_temp_kelvin);
+            this.colorTempMaxKelvin = LightFeatures.getValidKelvin(lightEntity.attributes.max_color_temp_kelvin);
         }
+    }
+
+    /**
+     * @returns Kelvin value reported by the light, or null when it is missing or outside of the realistic range.
+     * Some integrations report broken limits (e.g. min 15 K), which would squeeze the whole temp wheel into a thin stripe.
+     */
+    private static getValidKelvin(kelvin: number | undefined): number | null {
+        if (!kelvin || kelvin < Consts.ColorTempMinValidKelvin || kelvin > Consts.ColorTempMaxValidKelvin)
+            return null;
+
+        return kelvin;
     }
 
     public isEmpty(): boolean {
