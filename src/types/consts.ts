@@ -28,6 +28,8 @@ export class Consts {
     public static readonly DialogOffColor = '#363636';
     public static readonly GradientOffset = 7; // percent
     public static readonly TransitionDefault = 'all 0.3s ease-out 0s';
+    public static readonly ColorTempDefaultMinKelvin = 2000; // default Hue range - used when the lights report no (valid) range
+    public static readonly ColorTempDefaultMaxKelvin = 6535;
     public static readonly ColorTempMinValidKelvin = 1000; // lower reported min is a broken value (e.g. 15 K), the default range is used instead
     public static readonly ColorTempMaxValidKelvin = 10000; // higher reported max is a broken value, the default range is used instead
     public static readonly LiveUpdateMinInterval = 200; // ms

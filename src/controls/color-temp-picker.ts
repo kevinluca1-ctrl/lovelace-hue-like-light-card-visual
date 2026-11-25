@@ -111,9 +111,15 @@ export class HueColorTempPicker extends LitElement {
             changed = true;
         }
 
-        if (changed && this._isRendered && this.mode === 'temp') {
+        if (!changed || !this._isRendered)
+            return;
+
+        if (this.mode === 'temp') {
             this.drawWheel();
         }
+
+        // marker positions on the temp wheel depend on the range
+        this._markers.forEach(m => m.refresh());
     }
 
     private onResize(): void {
@@ -122,8 +128,8 @@ export class HueColorTempPicker extends LitElement {
 
     // #region Rendering
 
-    private _tempMin = 2000; // default hue min
-    private _tempMax = 6535; // default hue max
+    private _tempMin = Consts.ColorTempDefaultMinKelvin;
+    private _tempMax = Consts.ColorTempDefaultMaxKelvin;
     private _isRendered = false;
     private _canvas: HTMLDivElement;
     private _backgroundLayer: HTMLCanvasElement;

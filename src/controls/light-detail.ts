@@ -88,11 +88,12 @@ export class HueLightDetail extends IdLitElement {
 
         this._modeSelector.showColor = lightFeatures.color;
         this._modeSelector.showTemp = lightFeatures.colorTemp;
-        if (lightFeatures.colorTemp &&
-            lightFeatures.colorTempMinKelvin &&
-            lightFeatures.colorTempMaxKelvin) {
-            // set new temp range
-            this._colorPicker.setTempRange(lightFeatures.colorTempMinKelvin, lightFeatures.colorTempMaxKelvin);
+        if (lightFeatures.colorTemp) {
+            // set the temp range of the selected lights, the default for missing limits (never keep the range of previously selected lights)
+            this._colorPicker.setTempRange(
+                lightFeatures.colorTempMinKelvin ?? Consts.ColorTempDefaultMinKelvin,
+                lightFeatures.colorTempMaxKelvin ?? Consts.ColorTempDefaultMaxKelvin
+            );
         }
 
         // show full-sized brightness picker
