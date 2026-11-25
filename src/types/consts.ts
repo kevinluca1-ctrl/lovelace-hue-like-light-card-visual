@@ -2,8 +2,8 @@ import { Color } from '../core/colors/color';
 import { KnownIconSize } from './types-config';
 
 export class Consts {
-    public static readonly Version = 'v1.12.1';
-    public static readonly Dev = true;
+    public static readonly Version = 'v1.12.1-visual';
+    public static readonly Dev = false;
     public static readonly ElementPostfix = Consts.Dev ? '-test' : '';
     public static readonly CardElementName = 'hue-like-light-card' + Consts.ElementPostfix;
     public static readonly ApiProviderName = Consts.Dev ? 'hue_card_test' : 'hue_card';

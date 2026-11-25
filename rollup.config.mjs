@@ -6,7 +6,7 @@ import serve from 'rollup-plugin-serve';
 
 const LCERROR = '\x1b[31m%s\x1b[0m'; //red
 
-var dev = true;
+var dev = false;
 
 const serverOptions = {
     contentBase: ['./dist'],
