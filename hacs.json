@@ -1,5 +1,5 @@
 {
-    "name": "Hue-Like Light Card",
+    "name": "Hue-Like Light Card (Visual Editor)",
     "render_readme": true,
-    "filename": "hue-like-light-card.js"
+    "filename": "hue-like-light-card-v.js"
 }

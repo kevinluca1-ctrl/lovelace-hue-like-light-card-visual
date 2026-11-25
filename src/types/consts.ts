@@ -4,11 +4,12 @@ import { KnownIconSize } from './types-config';
 export class Consts {
     public static readonly Version = 'v1.12.1-visual';
     public static readonly Dev = false;
-    public static readonly ElementPostfix = Consts.Dev ? '-test' : '';
+    // '-v' keeps this fork (visual editor) installable next to the original card
+    public static readonly ElementPostfix = Consts.Dev ? '-test' : '-v';
     public static readonly CardElementName = 'hue-like-light-card' + Consts.ElementPostfix;
-    public static readonly ApiProviderName = Consts.Dev ? 'hue_card_test' : 'hue_card';
+    public static readonly ApiProviderName = Consts.Dev ? 'hue_card_test' : 'hue_card_v';
 
-    public static readonly CardName = 'Hue-Like Light Card' + (Consts.Dev ? ' [TEST]' : '');
+    public static readonly CardName = 'Hue-Like Light Card' + (Consts.Dev ? ' [TEST]' : ' (Visual Editor)');
     public static readonly CardDescription = 'Hue-like way to control your lights' + (Consts.Dev ? ' [TEST]' : '');
 
     public static readonly HueBorderRadius = 10;

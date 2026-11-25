@@ -20,6 +20,7 @@ export interface IHassWindow extends Window {
     customIcons?: Record<string, object>;
     hue_card?: IApiWrapper;
     hue_card_test?: IApiWrapper;
+    hue_card_v?: IApiWrapper;
     /** HA card helpers (lazy loaded). */
     loadCardHelpers?(): Promise<{ createCardElement(config: Record<string, unknown>): Promise<HTMLElement> }>;
 

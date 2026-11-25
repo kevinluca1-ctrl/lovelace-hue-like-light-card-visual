@@ -55,6 +55,8 @@ Also this card will detect these icons installed and will use them prior to HA i
 
 ### Visual editor
 
+This fork can be installed next to the original card. Its card type is `custom:hue-like-light-card-v` and it is listed in the card picker as **Hue-Like Light Card (Visual Editor)**. The API object is `window.hue_card_v` (hash prefix `#hue_card_v:`).
+
 The card can be configured in the Home Assistant card editor, without writing YAML. The visual editor covers lights (entity, entities, floor, area, label, group entity), title, icon, description, appearance, scenes and tap/hold actions.
 
 Some details are set in the YAML editor only: action data (`offClickData`, `onClickData`, ...), per-entity settings (`title`, `icon` of items in `entities`), scene details (`title`, `icon`, `color`, `activation`, ...), `apiId`, `isVisible` and card-mod styles. The visual editor keeps these values when you change other options.
