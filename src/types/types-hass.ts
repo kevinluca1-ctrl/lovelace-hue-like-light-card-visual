@@ -7,6 +7,7 @@ export class HassCustomCardInfo {
     public type: string;
     public name: string;
     public description: string;
+    public preview?: boolean;
 }
 
 interface HassWindowEventMap extends WindowEventMap {
@@ -19,6 +20,8 @@ export interface IHassWindow extends Window {
     customIcons?: Record<string, object>;
     hue_card?: IApiWrapper;
     hue_card_test?: IApiWrapper;
+    /** HA card helpers (lazy loaded). */
+    loadCardHelpers?(): Promise<{ createCardElement(config: Record<string, unknown>): Promise<HTMLElement> }>;
 
     // custom window events
     // eslint-disable-next-line @typescript-eslint/no-explicit-any

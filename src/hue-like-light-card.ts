@@ -22,6 +22,7 @@ import { HueApiProvider } from './core/api-provider';
 import { ICardApi } from './types/types-api';
 import { DisplayObserver } from './core/display-observer';
 import { LiveUpdateSession } from './core/live-update-session';
+import { HueLikeLightCardEditor } from './editor/card-editor';
 
 // Show version info in console
 VersionNotifier.toConsole();
@@ -31,7 +32,8 @@ VersionNotifier.toConsole();
 (window as IHassWindow).customCards!.push({
     type: Consts.CardElementName,
     name: Consts.CardName,
-    description: Consts.CardDescription
+    description: Consts.CardDescription,
+    preview: true
 });
 
 @customElement(Consts.CardElementName)
@@ -50,6 +52,21 @@ export class HueLikeLightCard extends IdLitElement implements LovelaceCard {
 
     public constructor() {
         super('HueLikeLightCard');
+    }
+
+    /**
+     * @returns Visual editor of this card (used by HA card configuration dialog).
+     */
+    public static getConfigElement(): HTMLElement {
+        return document.createElement(HueLikeLightCardEditor.ElementName);
+    }
+
+    /**
+     * @returns Config of a new card, created from the HA card picker - the first light found.
+     */
+    public static getStubConfig(hass: HomeAssistant): Partial<HueLikeLightCardConfigInterface> {
+        const light = Object.keys(hass?.states ?? {}).find(id => id.startsWith('light.'));
+        return light ? { entity: light } : {};
     }
 
     /**

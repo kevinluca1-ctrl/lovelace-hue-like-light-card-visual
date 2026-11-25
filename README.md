@@ -53,6 +53,14 @@ Also this card will detect these icons installed and will use them prior to HA i
 
 ## Configuration
 
+### Visual editor
+
+The card can be configured in the Home Assistant card editor, without writing YAML. The visual editor covers lights (entity, entities, floor, area, label, group entity), title, icon, description, appearance, scenes and tap/hold actions.
+
+Some details are set in the YAML editor only: action data (`offClickData`, `onClickData`, ...), per-entity settings (`title`, `icon` of items in `entities`), scene details (`title`, `icon`, `color`, `activation`, ...), `apiId`, `isVisible` and card-mod styles. The visual editor keeps these values when you change other options.
+
+### Options
+
 <b>This table may contain not yet released options.❗❗❗</b><br/>
 Some of these options may not be in the latest version. Please always check the **Since** column.
 
